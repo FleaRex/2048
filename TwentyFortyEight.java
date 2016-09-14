@@ -30,7 +30,7 @@ public class TwentyFortyEight{
 	}
 
 
-	public void play(){
+	public int play(){
 		int i = 0;
 		currentGame.up();
 		currentGame.right();
@@ -51,59 +51,15 @@ public class TwentyFortyEight{
 			}
 			else if(i > 10000){
 				currentGame.print();
-				return;
+				break;
 				//System.out.println("i=" +i);
 			}
 		}
+		return currentGame.max();
 		//System.out.println(i);
 	}
 
 	public static void main(String[] args){
-		int n = 1000000;
-		int maximum = 0;
-		int successCounter2048=0;
-		int successCounter1024=0;
-		int successCounter512=0;
-		int maxScore = 0;
-		for(int counter = 0; counter < n; counter++){
-			TwentyFortyEight tester = new TwentyFortyEight();
-			tester.play();
-			int max = tester.currentGame.max();
-			maximum += max;
-			System.out.println(max);
-			if(max >= 2048){
-				successCounter2048++;
-				tester.currentGame.print();
-			}
-			if(max >= 1024){
-				successCounter1024++;
-			}
-			if(max >= 512){
-				successCounter512++;
-			}
-			//if(counter % 10000 == 0){
-			//	System.out.println(counter);
-			//}
-			if(max > maxScore){
-				maxScore = max;
-			}
-		}
-		double averageMax 	= (double) maximum / n;
-		double successP2048 = (double) successCounter2048 / n;
-		double successP1024 = (double) successCounter1024 / n;
-		double successP512 	= (double) successCounter512 / n;
-		System.out.println("The average max is " + averageMax);
-		System.out.println("There were " + successCounter2048 + " over 2048s");
-		System.out.println("There was " + successP2048 + " chance of over 2048");
-		System.out.println("There were " + successCounter1024 + " over 1024s");
-		System.out.println("There was " + successP1024 + " chance of over 1024");
-		System.out.println("There were " + successCounter512 + " over 512s");
-		System.out.println("There was " + successP512 + " chance of over 512");
+		
 	}
-
-
-
-
-
-
 }
