@@ -5,13 +5,13 @@
 
 public class TwentyFortyEight{
 	private Gameboard currentGame;
-	
+
 	public TwentyFortyEight(){
 		currentGame = new Gameboard();
 		currentGame.addRandom();
 		currentGame.addRandom();
 	}
-	
+
 	public boolean playable(){
 		boolean truth = true;
 		Gameboard copy1 = currentGame.copy();
@@ -22,28 +22,34 @@ public class TwentyFortyEight{
 		copy2.rightOnly();
 		copy3.upOnly();
 		copy4.downOnly();
-		
+
 		if(copy1.empties()+copy2.empties()+copy3.empties()+copy4.empties()==0){
 			truth = false;
 		}
 		return truth;
 	}
-	
-	
+
+
 	public void play(){
 		int i = 0;
 		currentGame.up();
 		currentGame.right();
 		while(this.playable()){
+			// currentGame.print();
 			i++;
 			if(currentGame.playableUp()){
 				currentGame.up();
 			}
-			else if(currentGame.playableRight(){
+			else if(currentGame.playableRight()){
 				currentGame.right();
 			}
-			else if(
-			if(i > 1000){
+			else if(currentGame.playableDown()){
+				currentGame.down();
+			}
+			else if(currentGame.playableLeft()){
+				currentGame.left();
+			}
+			else if(i > 10000){
 				currentGame.print();
 				return;
 				//System.out.println("i=" +i);
@@ -51,7 +57,7 @@ public class TwentyFortyEight{
 		}
 		//System.out.println(i);
 	}
-	
+
 	public static void main(String[] args){
 		int n = 1000000;
 		int maximum = 0;

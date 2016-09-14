@@ -7,7 +7,7 @@
 
 public class Gameboard{
 	private int[][] board;
-	
+
 	public Gameboard(){
 		board = new int[4][4];
 		for(int i=0;i<4;i++){
@@ -16,7 +16,7 @@ public class Gameboard{
 			}
 		}
 	}
-	
+
 	public Gameboard(Gameboard A){
 		board = new int[4][4];
 		for(int i=0;i<4;i++){
@@ -25,7 +25,7 @@ public class Gameboard{
 			}
 		}
 	}
-	
+
 	public void addRandom(){
 		int pos = 0;
 		double x = Math.floor(this.empties()*Math.random());
@@ -46,24 +46,22 @@ public class Gameboard{
 			}
 		}
 	}
-	
+
 	public int getIJ(int i, int j){
 		return this.board[i][j];
 	}
-	
+
 	public void setIJ(int i, int j, int val){
 		this.board[i][j] = val;
 	}
-	
+
 	public String toString(){
-		MaInput Ma = new MaInput();
-		
 		String matrix = "";
 		for (int j = 0; j < 4; j++){
 			String row = "";
 			for (int i = 0 ; i < 4; i++){
 				int aij = this.getIJ(i,j);
-				String x = MaF.iF(aij,5);
+				String x = Integer.toString(aij);
 				row += x;
 			}
 			matrix+=row;
@@ -71,7 +69,7 @@ public class Gameboard{
 		}
 		return matrix;
 	}
-	
+
 	public void down(){
 		if(this.playableDown()){
 			this.downMove();
@@ -87,7 +85,7 @@ public class Gameboard{
 			this.addRandom();
 		}
 	}
-	
+
 	public void up(){
 		if(this.playableUp()){
 			this.upMove();
@@ -103,7 +101,7 @@ public class Gameboard{
 			this.addRandom();
 		}
 	}
-	
+
 	public void left(){
 		if(this.playableLeft()){
 			this.leftMove();
@@ -119,7 +117,7 @@ public class Gameboard{
 			this.addRandom();
 		}
 	}
-	
+
 	public void right(){
 		if(this.playableRight()){
 			this.rightMove();
@@ -135,7 +133,7 @@ public class Gameboard{
 			this.addRandom();
 		}
 	}
-	
+
 	public void downMove(){
 		boolean doneMove=false;
 		for(int j = 2;j >= 0; j-=1){
@@ -153,7 +151,7 @@ public class Gameboard{
 			this.downMove();
 		}
 	}
-	
+
 	public void upMove(){
 		boolean doneMove=false;
 		for(int j = 1; j < 4; j++){
@@ -171,7 +169,7 @@ public class Gameboard{
 			this.upMove();
 		}
 	}
-	
+
 	public void leftMove(){
 		boolean doneMove=false;
 		for(int i = 1; i < 4; i++){
@@ -189,7 +187,7 @@ public class Gameboard{
 			this.leftMove();
 		}
 	}
-	
+
 	public void rightMove(){
 		boolean doneMove=false;
 		for(int i = 2; i >= 0; i-=1){
@@ -207,7 +205,7 @@ public class Gameboard{
 			this.rightMove();
 		}
 	}
-	
+
 	public int empties(){
 		int empty = 0;
 		for(int i = 0; i < 4; i++){
@@ -219,7 +217,7 @@ public class Gameboard{
 		}
 		return empty;
 	}
-	
+
 	public boolean equals(Gameboard A){
 		boolean truth = true;
 		for(int i = 0; i < 4; i++){
@@ -231,7 +229,7 @@ public class Gameboard{
 		}
 		return truth;
 	}
-	
+
 	public int max(){
 		int maximum = 0;
 		for(int i = 0; i < 4; i++){
@@ -243,7 +241,7 @@ public class Gameboard{
 		}
 		return maximum;
 	}
-	
+
 	public void downOnly(){
 		this.downMove();
 		for(int j = 2;j >= 0; j-=1){
@@ -256,7 +254,7 @@ public class Gameboard{
 		}
 		this.downMove();
 	}
-	
+
 	public void upOnly(){
 		this.upMove();
 		for(int j = 1; j < 4; j++){
@@ -269,7 +267,7 @@ public class Gameboard{
 		}
 		this.upMove();
 	}
-	
+
 	public void leftOnly(){
 		this.leftMove();
 		for(int i = 1; i < 4; i++){
@@ -282,7 +280,7 @@ public class Gameboard{
 		}
 		this.leftMove();
 	}
-	
+
 	public void rightOnly(){
 		this.rightMove();
 		for(int i = 2;i >= 0; i-=1){
@@ -295,60 +293,60 @@ public class Gameboard{
 		}
 		this.rightMove();
 	}
-	
+
 	public boolean playableLeft(){
 		boolean truth = true;
 		Gameboard copy1 = this.copy();
 		copy1.leftOnly();
-		
+
 		if(copy1.equals(this)){
 			truth = false;
 		}
 		return truth;
 	}
-	
+
 	public boolean playableRight(){
 		boolean truth = true;
 		Gameboard copy1 = this.copy();
 		copy1.rightOnly();
-		
+
 		if(copy1.equals(this)){
 			truth = false;
 		}
 		return truth;
 	}
-	
+
 	public boolean playableUp(){
 		boolean truth = true;
 		Gameboard copy1 = this.copy();
 		copy1.upOnly();
-		
+
 		if(copy1.equals(this)){
 			truth = false;
 		}
 		return truth;
 	}
-	
+
 	public boolean playableDown(){
 		boolean truth = true;
 		Gameboard copy1 = this.copy();
 		copy1.downOnly();
-		
+
 		if(copy1.equals(this)){
 			truth = false;
 		}
 		return truth;
 	}
-	
+
 	public void print(){
 		System.out.println(this.toString());
 	}
-	
+
 	public Gameboard copy(){
 		Gameboard X = new Gameboard(this);
 		return X;
 	}
-	
+
 	public static void main(String[] args){
 		Gameboard tester = new Gameboard();
 		System.out.println("Normal");
@@ -378,9 +376,9 @@ public class Gameboard{
 		tester.down();
 		tester.print();
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 }
