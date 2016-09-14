@@ -59,7 +59,49 @@ public class TwentyFortyEight{
 		//System.out.println(i);
 	}
 
+	public int play(int[] instructions) throws Exception{
+		int i = 0;
+		while(this.playable() && i < (10000/instructions.length) + 1){
+			i++;
+			for(int instructionCount = 0; instructionCount < instructions.length; instructionCount++){
+				int instruction = instructions[instructionCount];
+				switch(instruction){
+					case 0:
+						if(currentGame.playableUp()){
+							currentGame.up();
+						}
+						break;
+					case 1:
+						if(currentGame.playableRight()){
+							currentGame.right();
+						}
+						break;
+					case 2:
+						if(currentGame.playableDown()){
+							currentGame.down();
+						}
+						break;
+					case 3:
+						if(currentGame.playableLeft()){
+							currentGame.left();
+						}
+						break;
+					default:
+						throw new Exception("Unsuitable instruction");
+				}
+
+			}
+		}
+		return currentGame.max();
+	}
+
 	public static void main(String[] args){
-		
+		int[] instructionSet = {0,1,2,3};
+		try{
+			System.out.println((new TwentyFortyEight()).play(instructionSet));
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }
