@@ -4,7 +4,7 @@
 	i02 i12 i22 i32
 	i03 i13 i23 i33
 */
-
+package game;
 public class Gameboard{
 	private int[][] board;
 

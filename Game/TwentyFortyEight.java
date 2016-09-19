@@ -2,7 +2,7 @@
 	Author: B.Madley
 	Date: 20/03/14
 **/
-
+package game;
 public class TwentyFortyEight{
 	private Gameboard currentGame;
 
@@ -29,6 +29,29 @@ public class TwentyFortyEight{
 		return truth;
 	}
 
+	public void pressDown(){
+		if(currentGame.playableDown()){
+			currentGame.down();
+		}
+	}
+
+	public void pressUp(){
+		if(currentGame.playableUp()){
+			currentGame.up();
+		}
+	}
+
+	public void pressLeft(){
+		if(currentGame.playableLeft()){
+			currentGame.left();
+		}
+	}
+
+	public void pressRight(){
+		if(currentGame.playableRight()){
+			currentGame.right();
+		}
+	}
 
 	public int play(){
 		int i = 0;
@@ -59,6 +82,7 @@ public class TwentyFortyEight{
 		//System.out.println(i);
 	}
 
+	// DEPRECATED: Use sample.play
 	public int play(int[] instructions) throws Exception{
 		int i = 0;
 		while(this.playable() && i < (10000/instructions.length) + 1){
@@ -92,6 +116,10 @@ public class TwentyFortyEight{
 
 			}
 		}
+		return currentGame.max();
+	}
+
+	public int score(){
 		return currentGame.max();
 	}
 

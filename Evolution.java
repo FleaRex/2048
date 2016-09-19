@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import game.TwentyFortyEight;
 
 class Evolution{
 
@@ -23,7 +24,7 @@ class Evolution{
     // Maybe replace with some averaging.
     for(Sample sample : samples){
       try{
-        sample.score = (new TwentyFortyEight()).play(sample.instructions);
+        sample.play(new TwentyFortyEight());
       }
       catch (Exception e){
         System.err.println(e.getMessage());
@@ -46,12 +47,12 @@ class Evolution{
     int successes = 0;
     int highScore = 0;
     for(Sample sample : samples){
-      if(sample.score > highScore){
-        highScore = sample.score;
+      if(sample.fitness() > highScore){
+        highScore = sample.fitness();
       }
-      if(sample.score >= 2048){
+      if(sample.fitness() >= 2048){
         successes++;
-        System.out.println(sample.instructions);
+        System.out.println(sample.description());
       }
     }
 
